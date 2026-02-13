@@ -1,7 +1,6 @@
 package com.github.cidarosa.ms.produto.controller;
 
-import com.github.cidarosa.ms.produto.dto.ProdutoRequestDTO;
-import com.github.cidarosa.ms.produto.dto.ProdutoResponseDTO;
+import com.github.cidarosa.ms.produto.dto.ProdutoDTO;
 import com.github.cidarosa.ms.produto.service.ProdutoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -17,14 +16,15 @@ public class ProdutoController {
     public ProdutoService service;
 
     @GetMapping
-    public ResponseEntity<List<ProdutoResponseDTO>> getProduto() {
-        List<ProdutoResponseDTO> dto = ProdutoResponseDTO.createMock();
+    public ResponseEntity<List<ProdutoDTO>> getProduto() {
+        List<ProdutoDTO> dto = ProdutoDTO.createMock();
         return ResponseEntity.ok(dto);
     }
 
     @PostMapping
-    public ResponseEntity<ProdutoResponseDTO> createProduto(@RequestBody ProdutoRequestDTO dto) {
+    public ResponseEntity<ProdutoDTO> createProduto(@RequestBody ProdutoDTO dto) {
         return ResponseEntity.ok(service.createProduto(dto));
+
 
     }
 
