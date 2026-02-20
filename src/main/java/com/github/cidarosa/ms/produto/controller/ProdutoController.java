@@ -21,6 +21,17 @@ public class ProdutoController {
         return ResponseEntity.ok(dto);
     }
 
+    @GetMapping("/lista")
+    public ResponseEntity<List<ProdutoDTO>> getProdutos() {
+        List<ProdutoDTO> dto = service.findAllProdutos();
+        return ResponseEntity.ok(dto);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<ProdutoDTO> findById(@PathVariable Long id){
+        return ResponseEntity.ok(service.findProdutoById(id));
+    }
+
     @PostMapping
     public ResponseEntity<ProdutoDTO> createProduto(@RequestBody ProdutoDTO dto) {
         return ResponseEntity.ok(service.createProduto(dto));
