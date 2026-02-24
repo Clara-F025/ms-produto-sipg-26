@@ -1,0 +1,140 @@
+type: collection.insomnia.rest/5.0
+name: Scratch Pad
+meta:
+  id: wrk_scratchpad
+  created: 1748554600290
+  modified: 1748554600290
+collection:
+  - url: localhost:8080/produtos/lista
+    name: Lista Produtos
+    meta:
+      id: req_e420f0ae8b0f414982ade6021125841b
+      created: 1771939481448
+      modified: 1771939519208
+      isPrivate: false
+      sortKey: -1771939481449
+    method: GET
+    headers:
+      - name: User-Agent
+        value: insomnia/11.1.0
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: localhost:8080/produtos/1
+    name: "Listar por id "
+    meta:
+      id: req_49ec8674295349ba9d4036425af233dc
+      created: 1771939523339
+      modified: 1771939541271
+      isPrivate: false
+      sortKey: -1771939523339
+    method: GET
+    headers:
+      - name: User-Agent
+        value: insomnia/11.1.0
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: localhost:8080/produtos/uri
+    name: Cadastrar Produto
+    meta:
+      id: req_59b226cb5e974bd1a9086f6363abc733
+      created: 1771939968005
+      modified: 1771941721145
+      isPrivate: false
+      sortKey: -1771939968005
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"nome":"garrafa termica",
+        	"descricao":"garrafa termica OWALA",
+        	"valor":200
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/11.1.0
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: localhost:8080/produtos/4
+    name: Alterar Produto
+    meta:
+      id: req_68072ecf6d5944e29f50196bdac51e41
+      created: 1771941733933
+      modified: 1771942301018
+      isPrivate: false
+      sortKey: -1771941733933
+    method: PUT
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"nome":"garrafa termica",
+        	"descricao":"garrafa termica OWALA",
+        	"valor":300
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/11.1.0
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: localhost:8080/produtos/1
+    name: Deletar Produto
+    meta:
+      id: req_f22d8594bcc149108bf7413cbe9d7bbf
+      created: 1771942304031
+      modified: 1771942347400
+      isPrivate: false
+      sortKey: -1771942304031
+    method: DELETE
+    headers:
+      - name: User-Agent
+        value: insomnia/11.1.0
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_99d30891da4bdcebc63947a8fc17f076de878684
+    created: 1748554608519
+    modified: 1748554608519
+environments:
+  name: Base Environment
+  meta:
+    id: env_99d30891da4bdcebc63947a8fc17f076de878684
+    created: 1748554608518
+    modified: 1748554608518
+    isPrivate: false

@@ -5,7 +5,9 @@ import com.github.cidarosa.ms.produto.service.ProdutoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -15,10 +17,27 @@ public class ProdutoController {
     @Autowired
     public ProdutoService service;
 
-    @GetMapping
-    public ResponseEntity<List<ProdutoDTO>> getProduto() {
-        List<ProdutoDTO> dto = ProdutoDTO.createMock();
-        return ResponseEntity.ok(dto);
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteProduto(@PathVariable Long id){
+        service.deleteProdutoById(id);
+        return ResponseEntity.noContent().build();
+    }
+
+    @PostMapping("/uri")
+    public ResponseEntity<ProdutoDTO> createProdutoUri(@RequestBody ProdutoDTO dto){
+         ProdutoDTO produtoDTO = service.saveProduto(dto);
+         URI uri = ServletUriComponentsBuilder
+                 .fromCurrentRequestUri()
+                 .path("{/id}")
+                 .buildAndExpand(produtoDTO.getId())
+                 .toUri();
+
+     return ResponseEntity.created(uri).body(produtoDTO);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<ProdutoDTO> createProduto(@PathVariable Long id, @RequestBody ProdutoDTO dto){
+        return ResponseEntity.ok(service.updateProduto(id, dto));
     }
 
     @GetMapping("/lista")
@@ -32,10 +51,10 @@ public class ProdutoController {
         return ResponseEntity.ok(service.findProdutoById(id));
     }
 
-    @PostMapping
-    public ResponseEntity<ProdutoDTO> createProduto(@RequestBody ProdutoDTO dto) {
-        return ResponseEntity.ok(service.createProduto(dto));
-
+//    @PostMapping
+//    public ResponseEntity<ProdutoDTO> createProduto(@RequestBody ProdutoDTO dto) {
+//        return ResponseEntity.ok(service.createProduto(dto));
+//
 
     }
 
@@ -43,4 +62,4 @@ public class ProdutoController {
 //        produtos.add(new Produto(2L, "Iphone 15 plus", "Iphone 15 plus apple", 5000.0));
 //        produtos.add(new Produto(3L, "Mouse sem fio", "Mouse sem fio Logitech", 220.0));
 
-}
+
