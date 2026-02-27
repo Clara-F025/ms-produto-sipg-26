@@ -36,11 +36,4 @@ public class ProdutoDTO {
         valor = produto.getValor();
     }
 
-    public static List<ProdutoDTO> createMock() {
-        return List.of(
-                new ProdutoDTO(1L, "Smart Tv", "Smart tv lg 50 polegadas", 2285.0),
-                new ProdutoDTO(2L, "Iphone 15 plus", "Iphone 15 plus apple", 5000.0),
-                new ProdutoDTO(3L, "Mouse sem fio", "Mouse sem fio Logitech", 220.0)
-        );
-    }
 }
