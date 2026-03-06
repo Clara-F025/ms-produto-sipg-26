@@ -4,6 +4,7 @@ import com.github.cidarosa.ms.produto.dto.ProdutoDTO;
 import com.github.cidarosa.ms.produto.service.ProdutoService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -17,6 +18,12 @@ public class ProdutoController {
 
     @Autowired
     public ProdutoService service;
+
+    @Profile("test")
+    @GetMapping("/--demo/500")
+    public String force500(){
+        throw new RuntimeException("Erro 500 forçado para demonstração");
+    }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteProduto(@PathVariable Long id) {
@@ -37,7 +44,7 @@ public class ProdutoController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ProdutoDTO> createProduto(@PathVariable Long id, @RequestBody @Valid ProdutoDTO dto) {
+    public ResponseEntity<ProdutoDTO> updateProduto(@PathVariable Long id, @RequestBody @Valid ProdutoDTO dto) {
         return ResponseEntity.ok(service.updateProduto(id, dto));
     }
 

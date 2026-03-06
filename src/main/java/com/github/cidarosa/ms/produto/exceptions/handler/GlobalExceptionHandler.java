@@ -56,5 +56,17 @@ public class GlobalExceptionHandler {
 
     }
 
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<CustomErrorDto> handleGenericException(Exception e, HttpServletRequest request){
+        HttpStatus status = HttpStatus.INTERNAL_SERVER_ERROR;
+        CustomErrorDto err = new CustomErrorDto(
+                Instant.now(), status.value(),
+                "Erro inyerno inesperado",
+                request.getRequestURI()
+        );
+        return ResponseEntity.status(status).body(err);
+
+    }
+
 
 }

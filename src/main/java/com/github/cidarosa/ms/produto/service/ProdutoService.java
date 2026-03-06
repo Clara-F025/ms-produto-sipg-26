@@ -1,8 +1,11 @@
 package com.github.cidarosa.ms.produto.service;
 
+import com.github.cidarosa.ms.produto.dto.CategoriaDTO;
 import com.github.cidarosa.ms.produto.dto.ProdutoDTO;
+import com.github.cidarosa.ms.produto.entities.Categoria;
 import com.github.cidarosa.ms.produto.entities.Produto;
 import com.github.cidarosa.ms.produto.exceptions.ResourceNotFoundException;
+import com.github.cidarosa.ms.produto.repositories.CategoriaRepository;
 import com.github.cidarosa.ms.produto.repositories.ProdutoRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +18,10 @@ import java.util.List;
 public class ProdutoService {
 
     @Autowired
-    public ProdutoRepository repository;
+    private ProdutoRepository repository;
+
+    @Autowired
+    private CategoriaRepository categoriaRepository;
 
     @Transactional
     public void deleteProdutoById(Long id){
@@ -50,6 +56,10 @@ public class ProdutoService {
         produto.setDescricao(produtoDTO.getDescricao());
         produto.setNome(produtoDTO.getNome());
         produto.setValor(produtoDTO.getValor());
+
+        Categoria categoria = categoriaRepository.getReferenceById(produto.getCategoria().getId());
+
+        produto.setCategoria(categoria);
     }
 
     @Transactional(readOnly = true)
